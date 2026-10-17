@@ -8,11 +8,11 @@ const photographs = (await getCollection('gallery')).sort(
 );
 ---
 
-<BaseLayout title="Gallery" description="A few photographs from the workbench." current="gallery">
+<BaseLayout title="Gallery of Things" description="Small things from the workbench." current="gallery">
   <main id="main" class="gallery-page">
     <header class="prose gallery-intro">
-      <h1>Gallery</h1>
-      <p>A few photographs from the workbench. Select an image for a closer look.</p>
+      <h1>Gallery of Things</h1>
+      <p>Small things from the workbench. Select an image for a closer look.</p>
     </header>
     <div class="gallery-grid">
       {photographs.map(({ data }) => (
