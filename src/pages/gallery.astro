@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const photographs = (await getCollection('gallery')).sort(
+  (a, b) => a.data.order - b.data.order || a.id.localeCompare(b.id),
+);
+---
+
+<BaseLayout title="Gallery of Things" description="Small things from the workbench." current="gallery">
+  <main id="main" class="gallery-page">
+    <header class="prose gallery-intro">
+      <h1>Gallery of Things</h1>
+      <p>Small things from the workbench. Select an image for a closer look.</p>
+    </header>
+    <div class="gallery-grid">
+      {photographs.map(({ data }) => (
+        <figure>
+          <a href={data.image.src} aria-label={`View full-size image: ${data.title}`}>
+            <Image
+              src={data.image}
+              alt={data.alt}
+              widths={[360, 640, 960, 1280].filter((width) => width <= data.image.width)}
+              sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1000px) calc((100vw - 72px) / 2), 464px"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+            />
+          </a>
+          <figcaption>
+            <h2>{data.title}</h2>
+            {data.description && <p>{data.description}</p>}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .gallery-page { max-width: 960px; margin-inline: auto; }
+  .gallery-intro { margin-bottom: 2.5rem; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem 2rem; align-items: start; }
+  figure { margin: 0; min-width: 0; }
+  figure > a { display: block; background: var(--paper); border: 1px solid var(--line); }
+  figure > a:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
+  img { display: block; width: 100%; height: auto; }
+  figcaption { padding-top: 0.85rem; color: var(--ink); }
+  figcaption h2 { margin: 0; font: inherit; font-weight: 600; line-height: 1.5; }
+  figcaption p { margin: 0.35rem 0 0; font-size: 0.9rem; line-height: 1.65; }
+  @media (max-width: 640px) {
+    .gallery-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  }
+</style>

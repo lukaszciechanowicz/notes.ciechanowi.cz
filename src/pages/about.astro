@@ -1,0 +1,24 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import avatar from '../assets/avatar_01.png';
+---
+
+<BaseLayout title="About" description="Notes on enterprise clouds, small systems, and figuring things out." current="about">
+  <main class="about-layout about-inline" id="main">
+    <article class="prose">
+      <div class="about-heading">
+        <Image class="about-avatar red-cap-avatar" src={avatar} width={80} height={80} alt="Portrait of Ciechan" />
+        <h1 id="about-title">About</h1>
+      </div>
+      <p class="intro">Ciechan here. I solve problems.</p>
+      <p>Sometimes that means untangling enterprise cloud infrastructure. Sometimes it means building a camera shutter out of LEGO so I can disappear from a Zoom call, or teaching a letterbox to ping my phone when the post arrives.</p>
+      <p>I’ve built a global engineering team working on large-scale enterprise environments, and a framework that has saved organisations millions in cloud costs while improving security, largely without day-to-day supervision from me.</p>
+      <p>As I write these notes, I’m building a mechanism with an ambitious goal: make AWS impossible to misconfigure in a huge environment spanning every continent and thousands of services.</p>
+      <p>This is my notebook for the interesting bits: unusual cloud problems, automation that earns its keep, and DIY projects that need a little code, a few components, and some stubbornness. Especially the things that don’t fit neatly into a reference architecture.</p>
+      <p>I write when I’ve learned something too interesting to keep to myself. If you’re building something similarly odd, I’d like to hear about it. Comparing notes is part of the point. I’m sure you’ll figure out how to find me.</p>
+      <p>Old maps said “Here be dragons.” This one says “Here be clouds.” There’s still plenty to explore.</p>
+      <p class="personal-note">My notes. My opinions. Not speaking for my employer.</p>
+    </article>
+  </main>
+</BaseLayout>
