@@ -1,0 +1,44 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  current?: 'notes' | 'about' | 'gallery';
+  image?: string;
+}
+const { title, description = 'My notes on figuring things out — somewhere between enterprise clouds, automation, and small things built to see what happens.', current, image } = Astro.props;
+const pageTitle = title ? title + ' · Here be clouds' : 'Here be clouds';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const socialImage = image ? new URL(image, Astro.site).href : undefined;
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Here be clouds" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {socialImage && <meta property="og:image" content={socialImage} />}
+    <script is:inline>
+      document.documentElement.dataset.theme = new URL(location.href).searchParams.get('theme') === 'light' ? 'light' : 'dark';
+    </script>
+  </head>
+  <body>
+    <!-- dig TXT notes.ciechanowi.cz -->
+    <a class="skip" href="#main">Skip to content</a>
+    <SiteHeader current={current} />
+    <slot />
+    <footer class="site-footer"><a class="site-credit" href="https://krosno.cloud">krosno.cloud</a></footer>
+    <script src="../scripts/theme.ts"></script>
+  </body>
+</html>

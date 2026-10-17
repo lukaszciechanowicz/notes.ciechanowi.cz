@@ -1,0 +1,40 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostArtwork from '../components/PostArtwork.astro';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = (await getCollection('posts')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf() || a.id.localeCompare(b.id));
+  return paginate(posts, { pageSize: 10 });
+}) satisfies GetStaticPaths;
+const { page } = Astro.props as { page: Page<CollectionEntry<'posts'>> };
+const shortDate = (date: Date) => date.toISOString().slice(5, 10).replace('-', '/') + ' · ' + date.getUTCFullYear();
+---
+<BaseLayout title={page.currentPage > 1 ? 'Older notes · Page ' + page.currentPage : undefined} current="notes">
+  <main class="home" id="main">
+    <section class="home-lead" aria-labelledby="home-title">
+      <h1 id="home-title">Here be clouds.</h1>
+      <p class="home-intro">My notes on figuring things out — somewhere between enterprise clouds, automation, and small things built to see what happens.</p>
+    </section>
+    <section class="published" aria-label="Notes">
+      <ol class="published-list">
+        {page.data.map(post => (
+          <li class:list={['published-row', { 'has-artwork': Boolean(post.data.illustration || post.data.sketch) }]}>
+            <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>{shortDate(post.data.pubDate)}</time>
+            <div class="published-copy">
+              <a class="published-title" href={'/notes/' + post.id + '/'}>{post.data.title}</a>
+              <p class="published-meta"><span class="post-tag">{post.data.tags.join(' / ')}</span> · {post.data.readingMinutes} min read</p>
+              <p class="published-description">{post.data.description}</p>
+            </div>
+            {(post.data.illustration || post.data.sketch) && <a class="article-sketch" href={'/notes/' + post.id + '/'} aria-label={'Read ' + post.data.title}><PostArtwork post={post} /></a>}
+          </li>
+        ))}
+      </ol>
+      {(page.url.prev || page.url.next) && <nav class="pagination" aria-label="Notes pages">
+        {page.url.prev ? <a href={page.url.prev} rel="prev">← Newer notes</a> : <span></span>}
+        {page.url.next && <a href={page.url.next} rel="next">More →</a>}
+      </nav>}
+    </section>
+  </main>
+</BaseLayout>

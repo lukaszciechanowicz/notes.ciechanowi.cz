@@ -1,0 +1,24 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostArtwork from '../../components/PostArtwork.astro';
+
+export const getStaticPaths = (async () => (await getCollection('posts')).map(post => ({ params: { slug: post.id }, props: { post } }))) satisfies GetStaticPaths;
+const { post } = Astro.props as { post: CollectionEntry<'posts'> };
+const { Content } = await render(post);
+---
+<BaseLayout title={post.data.title} description={post.data.description} current="notes">
+  <main class:list={['article-layout', { 'without-illustration': !post.data.illustration && !post.data.sketch }]} id="main">
+    {(post.data.illustration || post.data.sketch) && <aside class="article-illustration" aria-label="Article illustration"><PostArtwork post={post} /></aside>}
+    <article class="prose">
+      <header>
+        <p class="article-date"><time datetime={post.data.pubDate.toISOString().slice(0, 10)}>{post.data.pubDate.toISOString().slice(0, 10)}</time></p>
+        <p class="eyebrow"><span class="post-tag">{post.data.tags.join(' / ')}</span></p>
+        <h1>{post.data.title}</h1>
+        <p class="dek">{post.data.description}</p>
+      </header>
+      <Content />
+    </article>
+  </main>
+</BaseLayout>
