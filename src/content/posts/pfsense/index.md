@@ -31,6 +31,95 @@ We eventually got the wired speed test to the full advertised rate without repla
 
 The path was a wired client, a 2.5GbE switch, pfSense, and an Orange Funbox connected to a 2 Gbps Internet service. Both the switch-to-firewall link and firewall-to-Funbox link were intended to run at 2.5 Gbps.
 
+<figure class="network-figure" id="network-diagram">
+<div class="diagram-scroll" tabindex="0" role="region" aria-label="Home network diagram; scroll horizontally on narrow screens">
+<svg xmlns="http://www.w3.org/2000/svg" class="network-art" viewBox="0 0 1000 500" fill="none" role="img" aria-labelledby="network-title network-description">
+<title id="network-title">Where the missing gigabit went</title>
+<desc id="network-description">My Mac connects wirelessly to a Wi-Fi mesh. The mesh and my son's wired PC connect to a switch. The switch connects to pfSense, then to the Orange Funbox, then to the Internet. The four wired LAN and gateway links are 2.5GbE. The Orange Internet plan is 2 Gbps. A warm arrow identifies pfSense packet processing as the bottleneck investigated.</desc>
+<g stroke="var(--fg, currentColor)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+<g id="network-links">
+<path id="mac-mesh-link" d="M139 92C175 89 211 96 258 91" stroke-dasharray="1 9"/>
+<path id="mesh-switch-link" d="M300 116C297 169 304 222 299 282"/>
+<path id="pc-switch-link" d="M133 300C172 298 213 302 258 300"/>
+<path id="switch-firewall-link" d="M343 300C379 303 417 297 457 301"/>
+<path id="firewall-funbox-link" d="M544 300C580 298 621 303 665 300"/>
+<path id="funbox-internet-link" d="M736 301C771 299 808 304 849 301"/>
+</g>
+<g id="mac-device">
+<path d="M44 64C68 62 99 65 124 63L126 110L43 110L44 64ZM49 69L119 69L120 104L49 104L49 69M42 112L29 123C61 127 99 126 138 124L126 112M62 119L104 119"/>
+<path d="M51 132C74 133 105 132 126 131M52 73L52 99" opacity=".25" stroke-width=".9"/>
+</g>
+<g id="mesh-device">
+<path d="M260 94C263 84 335 84 341 93C345 102 336 115 302 116C274 117 257 107 260 94ZM261 94C273 106 326 106 340 94"/>
+<path d="M280 75C290 65 310 65 321 75M287 81C296 73 307 74 314 81M298 86L302 86" stroke-width="1.3"/>
+<path d="M269 118C285 122 318 123 333 117" opacity=".25" stroke-width=".9"/>
+</g>
+<g id="pc-device">
+<path d="M46 265C68 263 97 266 121 264L121 313L46 314L46 265ZM52 271L115 270L115 306L53 307L52 271M78 315L79 328M67 331L96 330"/>
+<path d="M17 274L35 273L35 327L17 328L17 274ZM22 282L30 282M22 289L30 289M25 316L27 316M124 292L132 292L133 308"/>
+<path d="M47 319L69 320M101 319L119 318" opacity=".25" stroke-width=".9"/>
+</g>
+<g id="switch-device">
+<path d="M261 282C282 280 320 282 339 283C344 291 343 312 340 321C318 324 280 322 259 322C256 313 257 290 261 282ZM262 294C287 296 314 293 338 295"/>
+<path d="M266 303L275 303L275 312L266 312L266 303ZM282 303L291 303L291 312L282 312L282 303ZM298 303L307 303L307 312L298 312L298 303ZM315 303L324 303L324 312L315 312L315 303" stroke-width="1.2"/>
+<path d="M263 328C283 330 317 328 336 329" opacity=".25" stroke-width=".9"/>
+</g>
+<g id="firewall-device" stroke="var(--accent, currentColor)">
+<path d="M462 277C483 275 518 277 537 278C544 289 542 311 539 325C517 327 481 326 459 325C456 314 456 291 462 277Z"/>
+<path d="M462 290C470 290 476 291 480 290M520 290L535 290M465 313L473 313M526 313L534 313" stroke-width="1.2"/>
+<path d="M487 287L500 282L513 287L512 302C511 309 505 315 500 317C491 313 486 306 487 298L487 287ZM494 299L499 304L507 294"/>
+<path d="M463 331L536 332" opacity=".3" stroke-width=".9"/>
+</g>
+<g id="funbox-device">
+<path d="M672 254C688 250 713 254 728 252L733 323C714 328 685 326 668 324L672 254ZM678 261L722 261M677 269L722 270M680 278L720 278M681 286L720 287"/>
+<path d="M675 331C691 333 715 331 730 332M674 257L672 284" opacity=".25" stroke-width=".9"/>
+</g>
+<g id="internet-device">
+<path d="M866 287C854 285 847 293 850 303C852 312 861 316 871 314C868 326 881 333 895 329C906 338 921 332 925 324C940 331 953 325 952 315C965 311 968 300 960 294C966 282 951 272 939 277C930 264 910 265 900 273C888 259 869 268 866 281"/>
+<path d="M880 338C899 343 924 338 935 333" opacity=".25" stroke-width=".9"/>
+</g>
+</g>
+<g stroke="var(--accent, currentColor)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+<path d="M300 109L303 109M330 287L333 287M682 311L685 311M694 312L697 312"/>
+<path d="M620 416C608 389 577 355 543 328M543 328L547 339M543 328L554 332"/>
+<path d="M447 266L441 260M454 257L452 249M548 276L554 270M548 285L558 283" stroke-width="1.1"/>
+</g>
+<g fill="var(--fg, currentColor)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="500" text-anchor="middle">
+<text x="83" y="154">My Mac</text>
+<text x="300" y="43">Wi-Fi mesh</text>
+<text x="79" y="363">My son’s PC</text>
+<text x="300" y="363">2.5GbE switch</text>
+<text x="500" y="363" fill="var(--accent, currentColor)">pfSense</text>
+<text x="701" y="363">Orange Funbox</text>
+<text x="906" y="363">Internet</text>
+</g>
+<g fill="var(--muted, currentColor)" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="14" text-anchor="middle">
+<text x="194" y="73">Wi-Fi</text>
+<text x="347" y="204">2.5 GbE</text>
+<text x="194" y="276">2.5 GbE</text>
+<text x="400" y="276">2.5 GbE</text>
+<text x="600" y="276">2.5 GbE</text>
+<text x="792" y="276">2 Gbps plan</text>
+<text x="83" y="178">Monitoring</text>
+<text x="79" y="386">Wired speed test</text>
+</g>
+<g fill="var(--accent, currentColor)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" text-anchor="middle">
+<text x="662" y="446" font-size="19" font-weight="500">The bottleneck was here.</text>
+<text x="662" y="471" font-size="14" fill="var(--muted, currentColor)">pfSense forwarding, not a different Orange plan.</text>
+</g>
+<g stroke="var(--muted, currentColor)" stroke-width="1.5" stroke-linecap="round">
+<path d="M41 425L68 425" stroke-dasharray="1 7"/>
+<path d="M41 451C49 449 60 453 68 451"/>
+</g>
+<g fill="var(--muted, currentColor)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="14">
+<text x="80" y="430">Wi-Fi connection</text>
+<text x="80" y="456">Wired connection</text>
+</g>
+</svg>
+</div>
+<figcaption>The wired test path and the Mac used for SSH monitoring. The last label is the Orange service rate, not an Ethernet negotiation speed. On a narrow screen, scroll the drawing sideways.</figcaption>
+</figure>
+
 The firewall itself was running pfSense CE 2.8.1 on bare metal, with an Intel Celeron N4000, about 8 GB of RAM, and Intel I226-V Ethernet controllers using FreeBSD’s `igc` driver. WAN was `igc0`; LAN was `igc1`.
 
 The initial inspection covered link negotiation, interface errors, PCIe links, routing, NAT, active filtering and shaping, network memory, CPU state, and processes. Some of the useful read-only commands were:

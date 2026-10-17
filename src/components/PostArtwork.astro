@@ -2,7 +2,8 @@
 import type { CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import FirewallSketch from './FirewallSketch.astro';
+import NotebookSketch from './NotebookSketch.astro';
 interface Props { post: CollectionEntry<'posts'> }
 const { post } = Astro.props;
 ---
-{post.data.illustration ? <Image src={post.data.illustration} alt="" width={320} /> : post.data.sketch === 'firewall' ? <FirewallSketch /> : null}
+{post.data.illustration ? <Image src={post.data.illustration} alt="" width={320} /> : post.data.sketch === 'firewall' ? <FirewallSketch /> : post.data.sketch === 'notebook' ? <NotebookSketch /> : null}
