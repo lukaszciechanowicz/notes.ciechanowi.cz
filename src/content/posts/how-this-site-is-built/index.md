@@ -1,6 +1,6 @@
 ---
 title: A blog I don’t have to babysit
-description: Astro builds it, GitHub Actions checks and ships it, GitHub Pages serves it, and Cloudflare gives me an edge to play with. A small blog, everything as code.
+description: Astro builds it, GitHub Actions checks and ships it, GitHub Pages serves it, and Cloudflare handles DNS. A small blog, everything as code.
 slug: a-blog-i-dont-have-to-babysit
 pubDate: 2026-10-17
 tags: [Web, Automation]
@@ -13,10 +13,10 @@ sketch: notebook
 <p>It is not the most spectacular project on this blog. But I know <a class="friend-link" href="https://www.linkedin.com/in/leszekwalerys/">Lechu</a>, <a class="friend-link" href="https://www.linkedin.com/in/marcinpetrow/">Maniek</a> and <a class="friend-link" href="https://www.linkedin.com/in/patryk-pospiech/">Patryk</a> will need something similar, so I might as well write it down once instead of explaining the same setup three times. This one is partly for you, gents.</p>
 <p>I wanted a small, personal site. Comfortable to read. A little odd around the edges. Somewhere for enterprise-cloud problems, automation, things made from LEGO, and the occasional photograph that does not need an entire article.</p>
 <p>I did not want to acquire another application to operate just so I could publish some paragraphs.</p>
-<section id="hosting"><h2>Four layers. Four different jobs.</h2>
+<section id="hosting"><h2>Four pieces. Four different jobs.</h2>
 <p>The site lives in a GitHub repository and is published at <a href="https://notes.ciechanowi.cz/">notes.ciechanowi.cz</a>. The important distinction is that GitHub Pages is the <em>host</em>, not the program that understands my article templates.</p>
-<p>And in front of it all, I put <a href="https://www.cloudflare.com/">Cloudflare</a>. Partly because it is useful, partly because I like having somewhere to do a little infrastructure magic: change things, add rules, call an API, and see what else I can make it do. GitHub Pages is still the origin. Cloudflare is the layer in front of it, not a move to Cloudflare Pages.</p>
-<ul><li><strong>Cloudflare sits at the edge.</strong> It gives me a place to shape what happens in front of the static site, with <a href="https://developers.cloudflare.com/fundamentals/api/">APIs for programmatic changes</a> when I want to go beyond clicking around a dashboard.</li><li><strong><a href="https://astro.build/">Astro</a> builds the site.</strong> It reads the content, applies my layouts, produces the article pages and lists, and processes the images I ask it to process.</li><li><strong>GitHub Actions runs the publishing workflow.</strong> It installs the dependencies, checks the project, builds it and hands the resulting artifact to the deployment job.</li><li><strong>GitHub Pages serves the result.</strong> Visitors receive HTML, CSS, JavaScript and images. They do not start an Astro application on a server every time they open an article.</li></ul>
+<p><a href="https://www.cloudflare.com/">Cloudflare</a> comes first, at DNS. I put the domain there partly because it is useful, partly because I like having somewhere to do a little infrastructure magic: change things, add records, call an API, and see what else I can make it do. There is room to play with rules and other edge features later. In the setup published here, though, the hostname points straight to GitHub Pages: it is <a href="https://developers.cloudflare.com/dns/proxy-status/">DNS-only, not an active Cloudflare HTTP proxy</a>. Cloudflare Pages is a different product; it is not hosting this blog.</p>
+<ul><li><strong>Cloudflare handles DNS.</strong> It gives me control over the domain’s records, with <a href="https://developers.cloudflare.com/fundamentals/api/">APIs for programmatic changes</a> when I want to go beyond clicking around a dashboard.</li><li><strong><a href="https://astro.build/">Astro</a> builds the site.</strong> It reads the content, applies my layouts, produces the article pages and lists, and processes the images I ask it to process.</li><li><strong>GitHub Actions runs the publishing workflow.</strong> It installs the dependencies, checks the project, builds it and hands the resulting artifact to the deployment job.</li><li><strong>GitHub Pages serves the result.</strong> Visitors receive HTML, CSS, JavaScript and images. They do not start an Astro application on a server every time they open an article.</li></ul>
 <p>The static output is a consequence of this site’s configuration, not a claim about everything Astro can do:</p>
 <pre><code>export default defineConfig({
   site: 'https://notes.ciechanowi.cz',
@@ -26,7 +26,7 @@ sketch: notebook
 <p>The build writes the website into <code>dist/</code>. That is what gets published. The custom domain is configured for GitHub Pages, and the repository carries a <code>public/CNAME</code> file with the hostname. HTTPS is enforced on the published site.</p>
 <p>There are obviously still servers. They are just not application servers I maintain for this blog. <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages">GitHub Pages is a static hosting service</a>, and that happens to match what these notes need.</p>
 <h3 class="accent">Everything as code</h3>
-<p>That is the bit I love. Changes become commits. I get version history, reviewable diffs and automation instead of a growing collection of steps to remember. The site, the content and the publishing workflow live together in the repository; Cloudflare’s API gives me a way to take the same approach further at the edge. Less clicking the same thing twice. More describing what I want and letting the machinery repeat it.</p>
+<p>That is the bit I love. Changes become commits. I get version history, reviewable diffs and automation instead of a growing collection of steps to remember. The site, the content and the publishing workflow live together in the repository; Cloudflare’s API gives me a way to take the same approach beyond the site itself. Less clicking the same thing twice. More describing what I want and letting the machinery repeat it.</p>
 </section>
 <section id="framework"><h2>Why use a framework for something this small?</h2>
 <p>The first versions were plain HTML. That was useful: I could explore the typography, spacing, colours and illustrations without making a publishing-system decision first.</p>
@@ -172,7 +172,7 @@ npm run preview</code></pre>
 <li><a href="https://docs.astro.build/en/guides/images/">Astro: Images</a> — processing source images and preserving public assets as-is.</li>
 <li><a href="https://docs.astro.build/en/reference/cli-reference/">Astro: CLI reference</a> — what dev, check, build and preview actually do.</li>
 <li><a href="https://docs.astro.build/en/guides/deploy/github/">Astro: Deploy to GitHub Pages</a> — the Actions publishing source and domain setup.</li>
-<li><a href="https://developers.cloudflare.com/fundamentals/api/">Cloudflare: API overview</a> — programmatic access to the edge services, separate from the static-site build.</li>
+<li><a href="https://developers.cloudflare.com/fundamentals/api/">Cloudflare: API overview</a> and <a href="https://developers.cloudflare.com/dns/proxy-status/">DNS proxy status</a> — programmatic configuration and the distinction between DNS-only records and proxied HTTP traffic.</li>
 <li><a href="https://github.com/lukaszciechanowicz/notes.ciechanowi.cz/blob/main/.github/workflows/deploy.yml">This site’s workflow</a>, <a href="https://github.com/lukaszciechanowicz/notes.ciechanowi.cz/blob/main/src/content.config.ts">content schema</a> and <a href="https://github.com/lukaszciechanowicz/notes.ciechanowi.cz/blob/main/astro.config.mjs">Astro configuration</a> — the small print behind this particular implementation.</li>
 </ol>
 </section>
