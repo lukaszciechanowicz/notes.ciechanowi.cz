@@ -176,3 +176,11 @@ npm run preview</code></pre>
 <li><a href="https://github.com/lukaszciechanowicz/notes.ciechanowi.cz/blob/main/.github/workflows/deploy.yml">This site’s workflow</a>, <a href="https://github.com/lukaszciechanowicz/notes.ciechanowi.cz/blob/main/src/content.config.ts">content schema</a> and <a href="https://github.com/lukaszciechanowicz/notes.ciechanowi.cz/blob/main/astro.config.mjs">Astro configuration</a> — the small print behind this particular implementation.</li>
 </ol>
 </section>
+
+<section id="rss-edit"><h2>EDIT: RSS, without another moving part</h2>
+<p>Shortly after publishing this, I noticed the missing bit: there was no way to subscribe. A blog should not require remembering to visit it. So there is now <a href="/rss.xml">an RSS feed</a>.</p>
+<p>I added Astro’s <a href="https://docs.astro.build/en/recipes/rss/">official <code>@astrojs/rss</code> helper</a> and a static endpoint at <code>src/pages/rss.xml.ts</code>. At build time, it reads the same posts collection as the homepage, sorts it in the same order, and generates <code>dist/rss.xml</code>. Each entry contains the title, publication date, description and an absolute link to the article. It includes all published posts, not just the ten that fit on the first archive page.</p>
+<p>This is a summary feed, not a second rendering of the whole blog inside a reader. The full articles, sketches and photographs stay on the site. The article URL also serves as the entry’s stable identifier, so rebuilding the site does not turn the same post into a new item.</p>
+<p>A <code>rel="alternate"</code> link in the shared page head lets feed-aware readers discover it. The tiny <em>rss</em> link at the bottom left is for humans. And because the XML is just another build artifact, the existing GitHub Actions workflow checks and publishes it alongside everything else. No extra server, scheduled job or manually maintained list of posts.</p>
+<p>A small omission fixed with one endpoint. That is exactly the sort of boring I want from the publishing side of this thing.</p>
+</section>

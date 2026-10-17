@@ -23,6 +23,7 @@ const socialImage = image ? new URL(image, Astro.site).href : undefined;
     <title>{pageTitle}</title>
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="Here be clouds." href={new URL('/rss.xml', Astro.site)} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Here be clouds" />
     <meta property="og:title" content={pageTitle} />
@@ -38,7 +39,10 @@ const socialImage = image ? new URL(image, Astro.site).href : undefined;
     <a class="skip" href="#main">Skip to content</a>
     <SiteHeader current={current} />
     <slot />
-    <footer class="site-footer"><a class="site-credit" href="https://krosno.cloud">krosno.cloud</a></footer>
+    <footer class="site-footer">
+      <a class="site-credit" href="/rss.xml" aria-label="Subscribe via RSS">rss</a>
+      <a class="site-credit" href="https://krosno.cloud">krosno.cloud</a>
+    </footer>
     <script src="../scripts/theme.ts"></script>
   </body>
 </html>

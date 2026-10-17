@@ -99,7 +99,7 @@ html[data-theme="light"] .bulb-light{display:inline}
 .study-grid figcaption{color:var(--muted);font-size:14px;line-height:1.7}
 .study-grid figcaption strong{display:block;margin:10px 0 6px;color:var(--ink);font-weight:550}
 .gallery-page,.plain-page{width:min(1040px,calc(100% - 64px));margin:32px auto 0;flex:1}
-.site-footer{width:min(1040px,calc(100% - 64px));margin:67px auto 0;padding:24px 0 38px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;align-items:baseline}
+.site-footer{width:min(1040px,calc(100% - 64px));margin:67px auto 0;padding:24px 0 38px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
 .site-credit{color:var(--credit);font:11px/1.8 var(--mono);text-decoration:none;white-space:nowrap}
 .site-credit:hover{color:var(--credit);text-decoration:underline}
 @media(max-width:780px){
