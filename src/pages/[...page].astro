@@ -14,7 +14,7 @@ const shortDate = (date: Date) => date.toISOString().slice(5, 10).replace('-', '
 <BaseLayout title={page.currentPage > 1 ? 'Older notes · Page ' + page.currentPage : undefined} current="notes">
   <main class="home" id="main">
     <section class="home-lead" aria-labelledby="home-title">
-      <h1 id="home-title">Here be clouds.</h1>
+      <h1 id="home-title">Here be clouds<a class="home-title-dot" href="/about/#here-be-clouds" aria-label="About the name Here be clouds">.</a></h1>
       <p class="home-intro">My notes on figuring things out — somewhere between enterprise clouds, automation, and small things built to see what happens.</p>
     </section>
     <section class="published" aria-label="Notes">

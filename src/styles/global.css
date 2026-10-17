@@ -24,6 +24,7 @@ html[data-theme="light"] .theme-toggle{color:var(--accent)}
 html[data-theme="light"] .bulb-light{display:inline}
 .home{width:min(1040px,calc(100% - 64px));margin:0 auto;flex:1;min-width:0}
 .home h1{font-size:30px;font-weight:800;letter-spacing:-.055em;line-height:1.15;margin:0}
+.home-title-dot{color:var(--accent);text-decoration:none}
 .home-intro{font-size:21px;max-width:47ch;color:var(--muted);line-height:1.7;margin:24px 0 0}
 .published{margin-top:43px}
 .published-list{list-style:none;margin:0;padding:0}
@@ -64,6 +65,7 @@ html[data-theme="light"] .bulb-light{display:inline}
 .prose>nav{display:flex;flex-wrap:wrap;gap:8px 20px;font:13px/1.8 var(--mono);margin:28px 0 36px}
 .prose section{scroll-margin-top:25px}
 .prose a{color:var(--link);overflow-wrap:anywhere}
+.prose .about-name-story{color:var(--accent);scroll-margin-top:24px}
 .prose ul,.prose ol{padding-left:1.4em;margin:0 0 24px}
 .prose li{margin:9px 0}
 .prose code{font:.86em/1.6 var(--mono);overflow-wrap:anywhere}
