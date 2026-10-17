@@ -28,10 +28,6 @@ const photographs = (await getCollection('gallery')).sort(
               format="webp"
             />
           </a>
-          <figcaption>
-            <h2>{data.title}</h2>
-            {data.description && <p>{data.description}</p>}
-          </figcaption>
         </figure>
       ))}
     </div>
@@ -46,9 +42,6 @@ const photographs = (await getCollection('gallery')).sort(
   figure > a { display: block; background: var(--paper); border: 1px solid var(--line); }
   figure > a:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
   img { display: block; width: 100%; height: auto; }
-  figcaption { padding-top: 0.85rem; color: var(--ink); }
-  figcaption h2 { margin: 0; font: inherit; font-weight: 600; line-height: 1.5; }
-  figcaption p { margin: 0.35rem 0 0; font-size: 0.9rem; line-height: 1.65; }
   @media (max-width: 640px) {
     .gallery-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
   }
