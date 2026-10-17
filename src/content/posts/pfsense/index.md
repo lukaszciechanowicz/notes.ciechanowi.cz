@@ -3,7 +3,7 @@ title: Finding the missing gigabit in my pfSense firewall
 description: How packet queues, monitoring overhead, and a CPU power policy helped me recover the 2 Gbps my Orange connection already offered.
 slug: finding-the-missing-gigabit-in-my-pfsense-firewall
 pubDate: 2026-10-17
-tags: [Networking, Systems]
+tags: [pfSense, AI]
 readingMinutes: 13
 sketch: firewall
 ---
@@ -257,9 +257,9 @@ That makes CPU power management a strong explanation for the remaining performan
 
 <figure class="result-figure">
   <a href="/images/pfsense/speedtest.png">
-    <img src="/images/pfsense/speedtest.png" alt="Two speed-test results: download increased from 1075.98 to 2091.40 Mbps; upload was 607.59 and 608.52 Mbps, respectively." width="4082" height="1284" loading="lazy" decoding="async">
+    <img src="/images/pfsense/speedtest.png" alt="Two speed-test results: download increased from 1075.98 to 2091.40 Mbps; respectively." width="4082" height="1284" loading="lazy" decoding="async">
   </a>
-  <figcaption>The recorded before-and-after speed tests: download rose from about 1.08 to 2.09 Gbps while upload stayed near 608 Mbps. These are individual Internet measurements, not controlled repeated-run medians; they do not isolate the contribution of each change. Open the image for the full-size results.</figcaption>
+  <figcaption>The recorded before-and-after speed tests: download rose from about 1.08 to 2.09 Gbps. Open the image for the full-size results.</figcaption>
 </figure>
 
 The practical result was roughly twice the useful Internet throughput on the tested wired path, on the same hardware. The ISP connection itself wasn’t upgraded. This does not mean every device, Wi-Fi client, VPN, tiny-packet workload, or single TCP stream can now do the same.
@@ -322,7 +322,4 @@ Same firewall. Same NICs. A much better explanation of where the missing gigabit
   <li><a href="https://www.intel.com/content/www/us/en/products/sku/128988/intel-celeron-processor-n4000-4m-cache-up-to-2-60-ghz/specifications.html">Intel Celeron N4000 specifications</a> — core count, base/Burst frequencies, SpeedStep, and lack of Speed Shift and Turbo Boost support.</li>
   <li><a href="https://docs.netgate.com/pfsense/en/latest/config/advanced-tunables.html">Netgate: System Tunables</a> — runtime changes versus persistent configuration. <a href="https://docs.netgate.com/pfsense/en/latest/hardware/tune.html#tso-lro">Netgate: TSO/LRO</a> — why we left those offloads disabled.</li>
 </ol>
-
-No private hostnames, MAC addresses, credentials, or public IP addresses are included. This is a report of one configuration and one troubleshooting session, not a recommendation to apply these settings universally.
-
 </section>
