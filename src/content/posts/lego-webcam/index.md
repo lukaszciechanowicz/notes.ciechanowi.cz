@@ -10,13 +10,13 @@ sketch: camera
 
 What do you do when you want to close your laptop during a Zoom call but still need a webcam? Build your own out of LEGO, of course.
 
-I put an old Creative USB webcam inside a LEGO build, added an ESP32 and a tiny servo, and gave it a moving cover. The board runs a small HTTP API over Wi-Fi. macOS Automator sends the requests, with keyboard shortcuts mapped to the custom buttons on my mouse. One click opens the cover. Another closes it.
+I put an old Creative USB webcam inside a LEGO build, added an ESP32 and a tiny servo, and gave it a moving cover. The board runs a small HTTP API over Wi-Fi. macOS Automator sends the requests, with keyboard shortcuts mapped to the custom buttons on my mouse. One click opens the cover. Another closes it. One mouse click and I physically disappear.
 
-Along the way, I learned how to write an API for the ESP32. Not bad for an excuse to play with LEGO.
+Along the way, I learned how to write an API that can run on an ESP32. Not bad for an excuse to play with LEGO.
 
 Could I have just bought a regular webcam? Sure. But where’s the fun in that?
 
-Does this make sense? No. Do I love it? Absolutely. LEGO, electronics, automation. I’m having a great time.
+Overengineered? Yes. Regrets? Zero. LEGO, electronics, automation. I’m having a great time.
 
 Thanks, [M5Stack](https://m5stack.com/), for making hardware hacks this simple.
 
