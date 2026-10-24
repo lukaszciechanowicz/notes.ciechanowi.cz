@@ -10,7 +10,7 @@ const posts = defineCollection({
     pubDate: z.coerce.date(),
     tags: z.array(z.string()),
     readingMinutes: z.number().int().positive(),
-    sketch: z.enum(['firewall', 'notebook', 'camera']).optional(),
+    sketch: z.enum(['firewall', 'notebook', 'camera', 'observability']).optional(),
     illustration: image().optional(),
   }),
 });

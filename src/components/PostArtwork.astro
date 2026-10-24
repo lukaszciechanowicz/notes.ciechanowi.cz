@@ -4,7 +4,8 @@ import { Image } from 'astro:assets';
 import FirewallSketch from './FirewallSketch.astro';
 import NotebookSketch from './NotebookSketch.astro';
 import CameraSketch from './CameraSketch.astro';
+import ObservabilitySketch from './ObservabilitySketch.astro';
 interface Props { post: CollectionEntry<'posts'> }
 const { post } = Astro.props;
 ---
-{post.data.illustration ? <Image src={post.data.illustration} alt="" width={320} /> : post.data.sketch === 'firewall' ? <FirewallSketch /> : post.data.sketch === 'notebook' ? <NotebookSketch /> : post.data.sketch === 'camera' ? <CameraSketch /> : null}
+{post.data.illustration ? <Image src={post.data.illustration} alt="" width={320} /> : post.data.sketch === 'observability' ? <ObservabilitySketch /> : post.data.sketch === 'firewall' ? <FirewallSketch /> : post.data.sketch === 'notebook' ? <NotebookSketch /> : post.data.sketch === 'camera' ? <CameraSketch /> : null}
