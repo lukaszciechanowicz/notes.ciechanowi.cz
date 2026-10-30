@@ -1,6 +1,6 @@
 ---
-title: "Meet Clawd: a tiny desk companion for my coding agents"
-description: "An open-source Maclock desk companion that reacts to Claude Code, Codex and OMP hooks—thinking, waiting, and celebrating from a tiny Raspberry Pi screen."
+title: "Meet Maclock Clawd: a tiny desk companion for my coding agents"
+description: "Maclock Clawd: an open-source desk companion that reacts to Claude Code, Codex and OMP hooks—thinking, waiting, and celebrating from a tiny Raspberry Pi screen."
 slug: maclock-clawd
 pubDate: 2026-10-30
 tags: [Raspberry Pi, Automation, AI, Open Source]
@@ -13,28 +13,28 @@ sketch: maclock
 - **It's open source:** [get the code and build your own](https://github.com/lukaszciechanowicz/maclock-clawd).
 - **It has a cool gallery:** [browse all 64 animated reactions](https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md).
 - **There's a video explaining it all:** [watch the real display in action](https://www.youtube.com/watch?v=3HgPzPIy_u0).
-- **It reacts to hooks from my AI agents:** Claude Code, Codex and OMP can make Clawd think, wait, react to errors and celebrate.
+- **It reacts to hooks from my AI agents:** Claude Code, Codex and OMP can make Maclock Clawd think, wait, react to errors and celebrate.
 
-Meet Clawd, my tiny Maclock desk companion.
+Meet Maclock Clawd, my tiny desk companion.
 
 I built him around a Raspberry Pi Zero W and a 2.8-inch Waveshare DPI display, tucked inside a [Maclock enclosure](https://www.maclock.shop/en). He can sleep, wave hello, show some love, float in a pool, work at a computer, take a coffee break, listen to music… and occasionally run away when Big Boss calls.
 
 <figure class="result-figure">
-  <a href="/images/maclock-clawd/desk-companion.jpg" target="_blank" rel="noopener"><img src="/images/maclock-clawd/desk-companion.jpg" width="1600" height="1200" alt="Maclock Clawd on my desk beside a keyboard and coffee mug, showing a sleeping Clawd beneath the calculator-style clock."></a>
+  <a href="/images/maclock-clawd/desk-companion.jpg" target="_blank" rel="noopener"><img src="/images/maclock-clawd/desk-companion.jpg" width="1600" height="1200" alt="Maclock Clawd on my desk beside a keyboard and coffee mug, sleeping beneath the calculator-style clock."></a>
   <figcaption>The real desk companion, taking a nap between requests.</figcaption>
 </figure>
 
-But my favourite part is not the clock or even the animations. **Clawd reacts to what my coding agents are doing.**
+But my favourite part is not the clock or even the animations. **Maclock Clawd reacts to what my coding agents are doing.**
 
 When work begins, he thinks. When an assistant needs input, he waits. When a response finishes, he can dance, wave, or take a well-earned pool break. A little activity indicator, with considerably more personality than a spinner in a terminal.
 
-**Clawd is an open-source desk-companion project.** The source code, hardware details, setup instructions and assistant-hook examples are on GitHub:
+**Maclock Clawd is an open-source desk-companion project.** The source code, hardware details, setup instructions and assistant-hook examples are on GitHub:
 
 **[github.com/lukaszciechanowicz/maclock-clawd](https://github.com/lukaszciechanowicz/maclock-clawd)**
 
 ## Coding-agent hooks, not another chatbot
 
-Clawd connects to **Claude Code, Codex and OMP (Oh My Pi)** through optional hooks. The assistant runs on my computer; the Raspberry Pi receives small HTTP events and turns them into animations. There is no language model running inside the clock.
+Maclock Clawd connects to **Claude Code, Codex and OMP (Oh My Pi)** through optional hooks. The assistant runs on my computer; the Raspberry Pi receives small HTTP events and turns them into animations. There is no language model running inside the clock.
 
 The supported signals include:
 
@@ -47,7 +47,7 @@ The supported signals include:
 
 The integrations are separate and opt-in, and their coverage differs. For example, the Codex configuration does not have a dedicated tool-failure event; a post-tool callback alone cannot distinguish success from failure. The [hook guide](https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/hooks.md) explains the mappings and setup for each assistant.
 
-These are **activity notifications, not live LLM reasoning**. Clawd does not read the model's thoughts. The thinking pose is a timed animation refreshed by supported activity events. A completion dance means the response or work loop stopped—not that the code is correct or the tests passed.
+These are **activity notifications, not live LLM reasoning**. Maclock Clawd does not read the model's thoughts. The thinking pose is a timed animation refreshed by supported activity events. A completion dance means the response or work loop stopped—not that the code is correct or the tests passed.
 
 That is enough to make him useful: a glance away from the terminal tells me whether the assistant has started work, needs attention, or has finished its response. And if I would rather celebrate with a wave than a dance, that is configurable too.
 
@@ -55,19 +55,19 @@ That is enough to make him useful: a glance away from the terminal tells me whet
 
 Here are a few hook reactions and other favourites, including the ShipStation flag, headphones and typing at a computer. **[Browse the full gallery of all 64 reactions](https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md)** for the rest.
 
-<div class="photo-grid" aria-label="Animated examples of Clawd's hook reactions and favourite scenes">
-  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md#finished"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/wave.gif" width="300" height="225" loading="lazy" alt="Clawd waving hello."></a><figcaption>Session starts: a wave hello. Also available as a completion reaction.</figcaption></figure>
-  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/thinking.gif" width="300" height="225" loading="lazy" alt="Clawd playing the thinking animation."></a><figcaption>Work begins or a tool runs: thinking. An activity signal, not live reasoning.</figcaption></figure>
-  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/waiting.gif" width="300" height="225" loading="lazy" alt="Clawd waiting for attention."></a><figcaption>Permission or input needed: waiting for attention.</figcaption></figure>
-  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/knock.gif" width="300" height="225" loading="lazy" alt="Clawd performing the knock-on-screen reaction."></a><figcaption>An error is reported: a knock on the screen, where the assistant exposes an error hook.</figcaption></figure>
-  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md#finished"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/dance.gif" width="300" height="225" loading="lazy" alt="Clawd dancing."></a><figcaption>Response finishes: the default completion dance.</figcaption></figure>
-  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md#finished"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/pool.gif" width="300" height="225" loading="lazy" alt="Clawd floating in a pool."></a><figcaption>Or choose poolside chilling as the completion reaction. Work loop over; holiday mode on.</figcaption></figure>
-  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/flag_shipstation.gif" width="300" height="225" loading="lazy" alt="Clawd waving a flag bearing the ShipStation logo."></a><figcaption>A ShipStation flag for the desk. Trigger it with <code>flag_shipstation</code>.</figcaption></figure>
-  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/headphones.gif" width="300" height="225" loading="lazy" alt="Clawd listening to music through headphones."></a><figcaption>Headphones on, music playing. Trigger it with <code>headphones</code>.</figcaption></figure>
-  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/desktop.gif" width="300" height="225" loading="lazy" alt="Clawd typing at a desktop computer."></a><figcaption>Busy at the computer. Trigger it with <code>desktop</code>.</figcaption></figure>
+<div class="photo-grid" aria-label="Animated examples of Maclock Clawd's hook reactions and favourite scenes">
+  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md#finished"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/wave.gif" width="300" height="225" loading="lazy" alt="Maclock Clawd waving hello."></a><figcaption>Session starts: a wave hello. Also available as a completion reaction.</figcaption></figure>
+  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/thinking.gif" width="300" height="225" loading="lazy" alt="Maclock Clawd playing the thinking animation."></a><figcaption>Work begins or a tool runs: thinking. An activity signal, not live reasoning.</figcaption></figure>
+  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/waiting.gif" width="300" height="225" loading="lazy" alt="Maclock Clawd waiting for attention."></a><figcaption>Permission or input needed: waiting for attention.</figcaption></figure>
+  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/knock.gif" width="300" height="225" loading="lazy" alt="Maclock Clawd performing the knock-on-screen reaction."></a><figcaption>An error is reported: a knock on the screen, where the assistant exposes an error hook.</figcaption></figure>
+  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md#finished"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/dance.gif" width="300" height="225" loading="lazy" alt="Maclock Clawd dancing."></a><figcaption>Response finishes: the default completion dance.</figcaption></figure>
+  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md#finished"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/pool.gif" width="300" height="225" loading="lazy" alt="Maclock Clawd floating in a pool."></a><figcaption>Or choose poolside chilling as the completion reaction. Work loop over; holiday mode on.</figcaption></figure>
+  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/flag_shipstation.gif" width="300" height="225" loading="lazy" alt="Maclock Clawd waving a flag bearing the ShipStation logo."></a><figcaption>A ShipStation flag for the desk. Trigger it with <code>flag_shipstation</code>.</figcaption></figure>
+  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/headphones.gif" width="300" height="225" loading="lazy" alt="Maclock Clawd listening to music through headphones."></a><figcaption>Headphones on, music playing. Trigger it with <code>headphones</code>.</figcaption></figure>
+  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/desktop.gif" width="300" height="225" loading="lazy" alt="Maclock Clawd typing at a desktop computer."></a><figcaption>Busy at the computer. Trigger it with <code>desktop</code>.</figcaption></figure>
 </div>
 
-*Clawd and the source website artwork are © Anthropic. The ShipStation logo belongs to its owner; its appearance does not imply sponsorship or endorsement. These animated examples come from the project's gallery; see the [artwork and attribution notes](https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/artwork.md) for source credits and rights information.*
+*The Clawd character and the source website artwork are © Anthropic. The ShipStation logo belongs to its owner; its appearance does not imply sponsorship or endorsement. These animated examples come from Maclock Clawd's gallery; see the [artwork and attribution notes](https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/artwork.md) for source credits and rights information.*
 
 ## Tiny events, not my conversations
 
@@ -79,7 +79,7 @@ The recommended command-hook adapter sends only an event name, such as:
 
 It does not forward prompts, tool arguments, paths, transcripts or model output to the clock. It has a short deadline and fails silently if the device is unavailable, so a disconnected desk companion does not hold up the actual work.
 
-This is deliberately simple: the last accepted event wins. Multiple assistant sessions can replace each other's reactions. Clawd is one little screen, not a multi-agent control centre.
+This is deliberately simple: the last accepted event wins. Multiple assistant sessions can replace each other's reactions. Maclock Clawd is one little screen, not a multi-agent control centre.
 
 The HTTP API uses bearer authentication. Plain HTTP still exposes traffic and credentials to the network, so it belongs on a trusted LAN or behind an encrypted connection such as an SSH tunnel—not directly on the Internet.
 
@@ -124,7 +124,7 @@ curl -q --silent --show-error --fail-with-body --get \
   --data-urlencode 'text_size=64'
 ```
 
-A timed message is independent of the animation. This one replaces the clock with a scrolling line, without changing what Clawd is doing:
+A timed message is independent of the animation. This one replaces the clock with a scrolling line, without changing what Maclock Clawd is doing:
 
 ```sh
 curl -q --silent --show-error --fail-with-body \
@@ -148,17 +148,17 @@ It also includes a real hook notification, alongside a montage of analysis-like 
 
 ## Still a clock. Mostly.
 
-When he is not reacting to an assistant, Clawd has **64 animated reactions** to keep him busy. A configurable idle playlist rotates through scenes, and optional physical previous/next buttons let me choose the next one myself.
+When he is not reacting to an assistant, Maclock Clawd has **64 animated reactions** to keep him busy. A configurable idle playlist rotates through scenes, and optional physical previous/next buttons let me choose the next one myself.
 
 The screen shows a calculator-style clock when no message or caption takes its place. The API can display large captions and timed messages; long text scrolls rather than shrinking into unreadable pixels. A small Wi-Fi indicator reports the radio's connection status.
 
-And of course, there are two Windows-inspired Easter eggs: a Blue Screen of Death and “It's now safe to turn off your computer.” Watch the bottom of the screen: Clawd peeks up, looks around or blinks, then disappears again.
+And of course, there are two Windows-inspired Easter eggs: a Blue Screen of Death and “It's now safe to turn off your computer.” Watch the bottom of the screen: Maclock Clawd peeks up, looks around or blinks, then disappears again.
 
 **These are visual jokes only. The Raspberry Pi keeps running.**
 
 <div class="photo-grid" aria-label="Animated Windows-inspired Easter eggs">
-  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md#easter-eggs"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/windows_bsod.gif" width="300" height="225" loading="lazy" alt="A pretend Windows blue screen with Clawd peeking up from the bottom."></a><figcaption><code>windows_bsod</code>: a blue screen with a delayed Clawd peek. No actual crash.</figcaption></figure>
-  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md#easter-eggs"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/windows_shutdown.gif" width="300" height="225" loading="lazy" alt="A pretend Windows safe-to-turn-off screen with Clawd peeking up from the bottom."></a><figcaption><code>windows_shutdown</code>: “It's now safe to turn off your computer.” The Pi stays on.</figcaption></figure>
+  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md#easter-eggs"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/windows_bsod.gif" width="300" height="225" loading="lazy" alt="A pretend Windows blue screen with Maclock Clawd peeking up from the bottom."></a><figcaption><code>windows_bsod</code>: a blue screen with a delayed Maclock Clawd peek. No actual crash.</figcaption></figure>
+  <figure><a href="https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/gallery.md#easter-eggs"><img src="https://raw.githubusercontent.com/lukaszciechanowicz/maclock-clawd/main/docs/gallery/windows_shutdown.gif" width="300" height="225" loading="lazy" alt="A pretend Windows safe-to-turn-off screen with Maclock Clawd peeking up from the bottom."></a><figcaption><code>windows_shutdown</code>: “It's now safe to turn off your computer.” The Pi stays on.</figcaption></figure>
 </div>
 
 *These scenes use Windows-reference backgrounds supplied for the project. Microsoft and other third-party marks remain the property of their owners; this is not an endorsement or a redistribution licence.*
@@ -171,6 +171,6 @@ Could I use a regular clock and watch the terminal instead? Absolutely. But the 
 
 The project lives at **[github.com/lukaszciechanowicz/maclock-clawd](https://github.com/lukaszciechanowicz/maclock-clawd)**. Start there for the source, hardware notes, setup instructions and hook integrations.
 
-**Clawd and the claude.dev website artwork belong to Anthropic.** Some animations are custom creations for this project; others use artwork from [claude.dev](https://claude.dev/), which inspired the animation style and movement. Custom animations do not imply ownership of the character.
+**The Clawd character and the claude.dev website artwork belong to Anthropic.** Some animations are custom creations for Maclock Clawd; others use artwork from [claude.dev](https://claude.dev/), which inspired the animation style and movement. Custom animations do not imply ownership of the character.
 
 This is an **unofficial, fan-made, open-source hardware project**. It is not affiliated with, endorsed by or sponsored by Anthropic. Third-party artwork remains the property of its respective owners; the open-source description does not grant rights to Anthropic's artwork or other third-party assets. See the project's [artwork and attribution notes](https://github.com/lukaszciechanowicz/maclock-clawd/blob/main/docs/artwork.md) before redistributing assets.
