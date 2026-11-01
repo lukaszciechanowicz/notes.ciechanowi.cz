@@ -4,7 +4,10 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const photographs = (await getCollection('gallery')).sort(
-  (a, b) => a.data.order - b.data.order || a.id.localeCompare(b.id),
+  // Similar proportions keep neighbouring images close in height in the two-column grid.
+  (a, b) => a.data.image.width / a.data.image.height - b.data.image.width / b.data.image.height
+    || a.data.order - b.data.order
+    || a.id.localeCompare(b.id),
 );
 ---
 

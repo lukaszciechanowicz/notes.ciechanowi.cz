@@ -56,6 +56,7 @@ readingMinutes: 10
 <p>A local image in the body is straightforward:</p>
 <pre><code>![A useful view of the thing I am discussing](./photo.jpg)</code></pre>
 <p>Images stored in <code>src/</code> can go through Astro’s processing pipeline. Files in <code>public/</code> are copied as they are. I use that distinction deliberately: the pfSense speed-test screenshot lives in <code>public/images/pfsense/</code>, so the original PNG remains available behind the framed image in the article. <a href="https://docs.astro.build/en/guides/images/">Astro documents both paths</a>.</p>
+<p>Gallery of Things sorts photographs by width-to-height ratio, from portrait to landscape, so neighbouring images have similar heights in its two-column layout. Images with the same proportions retain their configured order; the photographs are not cropped to force a uniform shape.</p>
 <blockquote><p>A useful trap to avoid: this site does not currently have a <code>draft: true</code> publishing filter. Its collection loader includes the Markdown files in that directory. Keeping an unapproved draft outside the published collection is a workflow decision, not a feature I should assume exists.</p></blockquote>
 <p>That is why this post started as a local, standalone HTML review copy. I can read it, change the wording and judge the illustrations before it becomes a content entry. Writing a draft should not be the same action as publishing it.</p>
 <h3>The archive should not become an endless front page</h3>
